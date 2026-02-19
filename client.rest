@@ -1,0 +1,120 @@
+@baseUrl = http://localhost:3000
+@Auth = {{AuthPost.response.body.accessToken}}
+@ReAuth = {{AuthPost.response.body.refreshToken}}
+
+### Messages
+
+# @name MessagesGetAll
+GET {{baseUrl}}/messages
+?limit=10
+&offset=0
+
+###
+# @name MessagesGetOne
+GET {{baseUrl}}/messages/45
+
+###
+# @name MessagesPost
+POST {{baseUrl}}/messages
+Authorization: Bearer {{Auth}}
+Content-Type: application/json
+
+{
+  "fromId": 1,
+  "text": "Test envia mensagem para Gus"
+}
+
+###
+# @name MessagesPatch
+PATCH  {{baseUrl}}/messages/45
+Authorization: Bearer {{Auth}}
+Content-Type: application/json
+
+{
+  "read": true,
+  "text": "atualizei a mensagem"
+}
+
+###
+# @name MessagesDelete
+DELETE  {{baseUrl}}/messages/45
+Authorization: Bearer {{Auth}}
+
+
+### Person
+
+# @name PersonGetAll
+GET {{baseUrl}}/person
+?limit=15
+&offset=5
+
+###
+# @name PersonGetOne
+GET {{baseUrl}}/person/1
+Authorization: Bearer {{Auth}}
+
+###
+# @name PersonPost
+POST {{baseUrl}}/person
+Content-Type: application/json
+
+{
+  "name": "test",
+  "email": "test@gmail.com",
+  "password": "123456"
+}
+
+###
+# @name PersonPatch
+PATCH  {{baseUrl}}/person/36
+Authorization: Bearer {{Auth}}
+Content-Type: application/json
+
+{
+  "name": "Teste",
+  "password": "654321"
+}
+
+###
+# @name PersonDelete
+DELETE  {{baseUrl}}/person/36
+Authorization: Bearer {{Auth}}
+
+###
+# @name PersonUpload
+Post {{baseUrl}}/person/upload-image
+Authorization: Bearer {{Auth}}
+Content-Type: multipart/form-data; boundary=----FormBoundary
+
+------FormBoundary
+Content-Disposition: form-data; name="file"; filename="nestjs.png"
+Content-Type: application/png
+
+< ./dev/nestjs.png
+------FormBoundary--
+
+###
+# @name PersonUploadImageGet
+GET {{baseUrl}}/picture/36.png
+
+
+### Auth
+
+###
+# @name AuthPost
+POST {{baseUrl}}/auth
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "123456"
+}
+
+###
+# @name ReAuthPost
+POST {{baseUrl}}/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{ReAuth}}"
+}
