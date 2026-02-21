@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app/app.module';
-import { ParseIntIdPipe } from './common/pipes/parseIntId.pipe';
 import helmet from 'helmet';
+import { ParseIntIdPipe } from './common/pipes/parserIntId.pipe';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

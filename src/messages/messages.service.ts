@@ -12,6 +12,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PersonService } from 'src/person/person.service';
 import { PaginationDto } from 'src/common/dto/PaginationDto.dto';
 import { PayloadDto } from 'src/auth/dto/Payload.dto';
+import { EmailService } from 'src/email/email.service';
 
 @Injectable()
 export class MessagesService {
@@ -19,6 +20,7 @@ export class MessagesService {
     @InjectRepository(Message)
     private readonly messageRepository: Repository<Message>,
     private readonly personService: PersonService,
+    private readonly emailService: EmailService,
   ) {}
 
   toAndFromFiltered() {
@@ -68,10 +70,10 @@ export class MessagesService {
   }
 
   async create(createMessageDto: CreateMessageDto, payloadDto: PayloadDto) {
-    const { fromId } = createMessageDto;
+    const { toId } = createMessageDto;
 
-    const to = await this.personService.findOne(payloadDto.sub);
-    const from = await this.personService.findOne(fromId);
+    const from = await this.personService.findOne(payloadDto.sub);
+    const to = await this.personService.findOne(toId);
 
     const data = this.messageRepository.create({
       ...createMessageDto,
@@ -82,6 +84,17 @@ export class MessagesService {
     if (!data) throw new BadRequestException('Error the to creat message');
 
     const message = await this.messageRepository.save(data);
+
+    try {
+      await this.emailService.sendEmail(
+        message.to.email,
+        message.from.email,
+        message.text,
+      );
+    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      throw new ForbiddenException(error.message);
+    }
 
     return {
       id: message.id,

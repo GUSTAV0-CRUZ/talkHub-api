@@ -10,13 +10,13 @@ import { PersonModule } from 'src/person/person.module';
 import { AuthModule } from 'src/auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import path from 'path';
-import { ParseIntIdPipe } from 'src/common/pipes/parseIntId.pipe';
 import { creatPersonInDb } from 'src/utils/testsE2e/CreatPersonInDb';
 import { createPersonDtoForTest } from 'src/utils/testsE2e/CreatPersonDto';
 import { Person } from 'src/person/entities/person.entity';
 import { CreateAuthDto } from 'src/auth/dto/CreateAuth.dto';
 import { CreatPersonAuth } from 'src/utils/testsE2e/CreatPersonAuth';
 import { UpdatePersonDto } from 'src/person/dto/update-person.dto';
+import { ParseIntIdPipe } from 'src/common/pipes/parserIntId.pipe';
 
 describe('Person (e2e)', () => {
   let app: INestApplication<App>;

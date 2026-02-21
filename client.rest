@@ -20,8 +20,8 @@ Authorization: Bearer {{Auth}}
 Content-Type: application/json
 
 {
-  "fromId": 1,
-  "text": "Test envia mensagem para Gus"
+  "toId": 40,
+  "text": "Mensagem send"
 }
 
 ###
@@ -59,8 +59,8 @@ POST {{baseUrl}}/person
 Content-Type: application/json
 
 {
-  "name": "test",
-  "email": "test@gmail.com",
+  "name": "gustavo dev",
+  "email": "gustavo.cruzs.dev@gmail.com",
   "password": "123456"
 }
 
@@ -106,7 +106,7 @@ POST {{baseUrl}}/auth
 Content-Type: application/json
 
 {
-  "email": "test@gmail.com",
+  "email": "gus@gmail.com",
   "password": "123456"
 }
 
