@@ -18,6 +18,7 @@ import { PaginationDto } from 'src/common/dto/PaginationDto.dto';
 import { PayloadDto } from 'src/auth/dto/Payload.dto';
 import { PayloadParamDto } from 'src/auth/params/PayloadParamDto.decorator';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('messages')
 export class MessagesController {
@@ -33,6 +34,7 @@ export class MessagesController {
     return this.messagesService.findOne(id);
   }
 
+  @ApiBearerAuth('bearer')
   @UseGuards(AuthGuard)
   @Post()
   create(
@@ -42,6 +44,7 @@ export class MessagesController {
     return this.messagesService.create(CreateMessageDto, payloadDto);
   }
 
+  @ApiBearerAuth('bearer')
   @UseGuards(AuthGuard)
   @HttpCode(HttpStatus.OK)
   @Patch(':id')
@@ -53,6 +56,7 @@ export class MessagesController {
     return this.messagesService.updatePatch(id, updateMessageDto, payloadDto);
   }
 
+  @ApiBearerAuth('bearer')
   @UseGuards(AuthGuard)
   @HttpCode(200)
   @Delete(':id')
