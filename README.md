@@ -37,8 +37,8 @@ O diferencial deste projeto é a aplicação prática dos conceitos avançados d
 > **Nota:** Como este é um projeto de estudo, o envio de e-mails está configurado via **Mailtrap (Sandbox)**. Os e-mails não são enviados para caixas de entrada reais, ficando retidos no ambiente de teste para validação do fluxo.
 
 ### 📚 Documentação
-- API documentada com **Swagger (OpenAPI)**.
-
+- **Swagger (OpenAPI):** Documentação interativa dos endpoints.
+- **VS Code REST Client:** Arquivo `client.rest` incluso no projeto, permitindo testar as requisições (Login, CRUD, Mensagens) diretamente no editor, sem necessidade de ferramentas externas como Postman ou Insomnia.
 ---
 
 ## 🛠️ Tecnologias e Arquitetura
