@@ -113,4 +113,10 @@ Este projeto foi desenvolvido com base nos ensinamentos do curso de NestJS minis
 <img src="https://github.com/GUSTAV0-CRUZ.png" width="100px;" alt="Gustavo Cruz"/>
 
 **Gustavo Cruz**  
-Projeto desenvolvido por Gustavo Cruz (GUSTAV0-CRUZ).
+📧 gustavo.cruzs.dev@gmail.com
+
+🔗 https://github.com/GUSTAV0-CRUZ
+
+🔗 https://www.linkedin.com/in/gustavo-cruz-4a467b377
+
+---
